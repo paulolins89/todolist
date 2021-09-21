@@ -1,5 +1,8 @@
+import addTaskToList from './taskmaker';
+
 export default function inputNewTask (){
     let taskForm = document.createElement('form');
+    taskForm.setAttribute('id', 'taskForm');
 
     let taskName = document.createElement('input');
     taskName.setAttribute('type', 'text');
@@ -30,6 +33,11 @@ export default function inputNewTask (){
 
     taskForm.appendChild(submitTask);
 
-    return taskForm;
+    let taskcontainer = document.getElementById('taskcontainer');
+    taskcontainer.insertBefore(taskForm, addTaskBtn);
+
+    addTaskToList();
 }
+
+
 
