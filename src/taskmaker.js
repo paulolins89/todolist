@@ -1,4 +1,4 @@
-import updateTaskList from './taskDOM';
+import {inputNewTask, updateTaskList} from './taskDOM';
 
 function Task(title, duedate){
     this.title = title;
@@ -21,7 +21,7 @@ export default function addTaskToList(){
         event.preventDefault;
         let taskInput = document.getElementById('taskName').value;
         let duedateInput = document.getElementById('dueDate').value;
-        tasks.push(new Task(taskInput, duedateInput))
+        tasks.push(new Task(taskInput, duedateInput));
         updateTaskList(tasks);
     });
 }

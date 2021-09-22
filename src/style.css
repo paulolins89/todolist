@@ -1,0 +1,4 @@
+.fullTask{
+    display: flex;
+    flex-direction: row;
+}
