@@ -1,9 +1,16 @@
-import removeTaskForm from './taskadderDOM';
+import updateTaskList from './taskDOM';
 
 function Task(title, duedate){
     this.title = title;
     this.duedate = duedate;
 }
+
+/*
+function Project(name, tasks){
+    this.name = name;
+    this.tasks = tasks;
+}
+*/
 
 let tasks = [];
 
@@ -15,6 +22,6 @@ export default function addTaskToList(){
         let taskInput = document.getElementById('taskName').value;
         let duedateInput = document.getElementById('dueDate').value;
         tasks.push(new Task(taskInput, duedateInput))
-        removeTaskForm(tasks);
+        updateTaskList(tasks);
     });
 }

@@ -1,6 +1,9 @@
 import addTaskToList from './taskmaker';
 
-export default function inputNewTask (){
+export function inputNewTask (){
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    addTaskBtn.style.display == 'none';
+
     let taskForm = document.createElement('form');
     taskForm.setAttribute('id', 'taskForm');
 
@@ -19,11 +22,16 @@ export default function inputNewTask (){
     let taskPriority = document.createElement('input');
     taskPriority.setAttribute('type', 'button');
     */
-
+    
     let submitTask = document.createElement('input');
     submitTask.setAttribute('type', 'button');
     submitTask.setAttribute('value', 'Add');
     submitTask.setAttribute('id', 'submitTask');
+
+    let cancelTask = document.createElement('input');
+    cancelTask.setAttribute('type', 'button');
+    cancelTask.setAttribute('value', 'Cancel');
+    cancelTask.setAttribute('id', 'cancelTask');
 
     taskForm.appendChild(taskName);
     taskForm.appendChild(dueDate);
@@ -32,6 +40,8 @@ export default function inputNewTask (){
     //taskForm.appendChild(taskPriority);
 
     taskForm.appendChild(submitTask);
+    taskForm.appendChild(cancelTask);
+
 
     let taskcontainer = document.getElementById('taskcontainer');
     taskcontainer.insertBefore(taskForm, addTaskBtn);
@@ -39,5 +49,33 @@ export default function inputNewTask (){
     addTaskToList();
 }
 
+export function updateTaskList(tasks){
+    let taskForm = document.getElementById('taskForm');
+    let taskcontainer = document.getElementById('taskcontainer');
+    taskcontainer.removeChild(taskForm);
+
+    
+    let fullTask = document.createElement('div');
+    fullTask.setAttribute('class', 'fullTask');
+
+    let checkTask = document.createElement('checkbox');
+    checkTask.setAttribute('class', 'checkTask');
+    
+    let taskName = document.createElement('p');
+    taskName.setAttribute('class', 'taskName');
+
+    let dueDate = document.createElement('p')
+    dueDate.setAttribute('class', 'dueDate');
+
+    let deleteTask = document.createElement('input');
+    deleteTask.setAttribute('type', 'button');
+    deleteTask.setAttribute('value', 'Delete');
+    deleteTask.setAttribute('class', 'deleteTask');
+
+    fullTask.appendChild(checkTask);
+    fullTask.appendChild(taskName);
+    fullTask.appendChild(dueDate);
+    fullTask.appendChild(deleteTask);
+}
 
 
