@@ -69,10 +69,12 @@ function updateTaskList(tasks){
         
         let taskName = document.createElement('p');
         taskName.setAttribute('class', 'taskName');
+        taskName.setAttribute('id', 'taskName' + i);
         taskName.innerHTML = tasks[i].title;
 
         let dueDate = document.createElement('p')
         dueDate.setAttribute('class', 'dueDate');
+        dueDate.setAttribute('id', 'dueDate' + i);
         dueDate.innerHTML = tasks[i].duedate;
 
         let deleteTask = document.createElement('input');
