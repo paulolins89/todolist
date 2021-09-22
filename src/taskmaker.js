@@ -1,5 +1,5 @@
 import {inputNewTask, updateTaskList} from './taskDOM';
-export {updateTask, addTaskToList, tasks};
+export {addTaskToList, tasks};
 
 function Task(title, duedate){
     this.title = title;
@@ -31,13 +31,4 @@ function addTaskToList(){
             updateTaskList(tasks);
         });
     });
-}
-
-function updateTask(tasks, event){
-    if (event.target.className == 'deleteTask'){
-        let targetIndex = parseFloat(event.target.id.slice(6));
-        tasks = tasks.slice(0,targetIndex).concat(tasks.slice(targetIndex + 1))
-        updateTaskList(tasks);
-        console.log(tasks);
-    }
 }

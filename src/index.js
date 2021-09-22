@@ -1,5 +1,5 @@
 import {inputNewTask, updateTaskList} from './taskDOM';
-import {updateTask, addTaskToList, tasks} from './taskmaker';
+import {addTaskToList, tasks} from './taskmaker';
 import './style.css';
 
 const addTaskBtn = document.getElementById('addTaskBtn');
@@ -10,6 +10,10 @@ addTaskBtn.addEventListener('click', () => {
 });
 
 taskFormOrList.addEventListener('click', e => {
-    updateTask(tasks, e);
+    if (e.target.className == 'deleteTask'){
+        let targetIndex = parseFloat(e.target.id.slice(6));
+        tasks = tasks.slice(0,targetIndex).concat(tasks.slice(targetIndex + 1))
+        updateTaskList(tasks);
+    }
 });
 
