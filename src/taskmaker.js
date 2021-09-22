@@ -15,13 +15,19 @@ function Project(name, tasks){
 let tasks = [];
 
 export default function addTaskToList(){
-    let submitTask = document.getElementById('submitTask');
+    const taskButtons = document.querySelectorAll('.taskButton');
+    //let submitTask = document.getElementById('submitTask');
+    //let cancelTask = document.getElementById('cancelTask');
     //later put logic in case person cancels
-    submitTask.addEventListener('click', event =>{
-        event.preventDefault;
-        let taskInput = document.getElementById('taskName').value;
-        let duedateInput = document.getElementById('dueDate').value;
-        tasks.push(new Task(taskInput, duedateInput));
-        updateTaskList(tasks);
+    taskButtons.forEach((button) => {
+        button.addEventListener('click', e => {
+            console.log(e.target.id);
+            if (e.target.id == 'submitTask'){
+                let taskInput = document.getElementById('taskName').value;
+                let duedateInput = document.getElementById('dueDate').value;
+                tasks.push(new Task(taskInput, duedateInput));
+            };
+            updateTaskList(tasks);
+        });
     });
 }
