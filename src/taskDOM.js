@@ -1,8 +1,10 @@
 import addTaskToList from './taskmaker';
 
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskFormOrList = document.getElementById('taskFormOrList');
+
 export function inputNewTask (){
-    const addTaskBtn = document.getElementById('addTaskBtn');
-    addTaskBtn.style.display == 'none';
+    addTaskBtn.style.display = 'none';
 
     let taskForm = document.createElement('form');
     taskForm.setAttribute('id', 'taskForm');
@@ -42,40 +44,46 @@ export function inputNewTask (){
     taskForm.appendChild(submitTask);
     taskForm.appendChild(cancelTask);
 
-
-    let taskcontainer = document.getElementById('taskcontainer');
-    taskcontainer.insertBefore(taskForm, addTaskBtn);
+    taskFormOrList.appendChild(taskForm);
 
     addTaskToList();
 }
 
 export function updateTaskList(tasks){
     let taskForm = document.getElementById('taskForm');
-    let taskcontainer = document.getElementById('taskcontainer');
-    taskcontainer.removeChild(taskForm);
-
     
-    let fullTask = document.createElement('div');
-    fullTask.setAttribute('class', 'fullTask');
+    while (taskFormOrList.firstChild){
+        taskFormOrList.removeChild(taskFormOrList.lastChild);
+    }
 
-    let checkTask = document.createElement('checkbox');
-    checkTask.setAttribute('class', 'checkTask');
+    for (i = 0; i < tasks.length; i++){
+        let fullTask = document.createElement('div');
+        fullTask.setAttribute('class', 'fullTask');
+
+        let checkTask = document.createElement('checkbox');
+        checkTask.setAttribute('class', 'checkTask');
+        
+        let taskName = document.createElement('p');
+        taskName.setAttribute('class', 'taskName');
+        taskName.innerHTML = tasks[i].title;
+
+        let dueDate = document.createElement('p')
+        dueDate.setAttribute('class', 'dueDate');
+        dueDate.innerHTML = tasks[i].dueDate;
+
+        let deleteTask = document.createElement('input');
+        deleteTask.setAttribute('type', 'button');
+        deleteTask.setAttribute('value', 'Delete');
+        deleteTask.setAttribute('class', 'deleteTask');
+
+        fullTask.appendChild(checkTask);
+        fullTask.appendChild(taskName);
+        fullTask.appendChild(dueDate);
+        fullTask.appendChild(deleteTask);
+        taskFormOrList.appendChild(fullTask);
+    }
     
-    let taskName = document.createElement('p');
-    taskName.setAttribute('class', 'taskName');
-
-    let dueDate = document.createElement('p')
-    dueDate.setAttribute('class', 'dueDate');
-
-    let deleteTask = document.createElement('input');
-    deleteTask.setAttribute('type', 'button');
-    deleteTask.setAttribute('value', 'Delete');
-    deleteTask.setAttribute('class', 'deleteTask');
-
-    fullTask.appendChild(checkTask);
-    fullTask.appendChild(taskName);
-    fullTask.appendChild(dueDate);
-    fullTask.appendChild(deleteTask);
+    addTaskBtn.style.display = 'initial';
 }
 
 
