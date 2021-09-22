@@ -4,6 +4,7 @@ export {addTaskToList, tasks};
 function Task(title, duedate){
     this.title = title;
     this.duedate = duedate;
+    this.done = false;
 }
 
 /*
@@ -22,7 +23,6 @@ function addTaskToList(){
     //later put logic in case person cancels
     taskButtons.forEach((button) => {
         button.addEventListener('click', e => {
-            console.log(e.target.id);
             if (e.target.id == 'submitTask'){
                 let taskInput = document.getElementById('taskName').value;
                 let duedateInput = document.getElementById('dueDate').value;

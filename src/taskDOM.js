@@ -53,7 +53,7 @@ function inputNewTask() {
 }
 
 function updateTaskList(tasks){
-    console.log(tasks);
+
     while (taskFormOrList.firstChild){
         taskFormOrList.removeChild(taskFormOrList.lastChild);
     }
@@ -64,7 +64,7 @@ function updateTaskList(tasks){
 
         let checkTask = document.createElement('input');
         checkTask.setAttribute('type', 'checkbox');
-        checkTask.setAttribute('class', 'checkTask');
+        checkTask.classList.add('checkTask');
         checkTask.setAttribute('id', 'check' + i);
         
         let taskName = document.createElement('p');
@@ -77,16 +77,33 @@ function updateTaskList(tasks){
         dueDate.setAttribute('id', 'dueDate' + i);
         dueDate.innerHTML = tasks[i].duedate;
 
+        if (tasks[i].done == false){
+            taskName.classList.remove('checked');
+            dueDate.classList.remove('checked');
+            checkTask.checked = false;
+        }else{
+            taskName.classList.add('checked');
+            dueDate.classList.add('checked');
+            checkTask.checked = true;
+        }
+
         let deleteTask = document.createElement('input');
         deleteTask.setAttribute('type', 'button');
         deleteTask.setAttribute('value', 'Delete');
         deleteTask.setAttribute('class', 'deleteTask');
         deleteTask.setAttribute('id', 'delete' + i);
 
+        let editTask = document.createElement('input');
+        editTask.setAttribute('type', 'button');
+        editTask.setAttribute('value', 'Edit');
+        editTask.setAttribute('class', 'editTask');
+        editTask.setAttribute('id', 'edit' + i);
+
         fullTask.appendChild(checkTask);
         fullTask.appendChild(taskName);
         fullTask.appendChild(dueDate);
         fullTask.appendChild(deleteTask);
+        fullTask.appendChild(editTask);
         taskFormOrList.appendChild(fullTask);
     }
     
