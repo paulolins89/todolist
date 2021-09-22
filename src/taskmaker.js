@@ -31,3 +31,14 @@ export default function addTaskToList(){
         });
     });
 }
+
+function deleteTask(){
+    let taskFormOrList = document.getElementById('taskFormOrList');
+    taskFormOrList.addEventListener('click', e => {
+        if (e.target.className == 'deleteTask'){
+            //check this logic
+            let targetIndex = parseFloat(e.target.id.slice(6));
+            myLibrary = myLibrary.slice(0,targetIndex).concat(myLibrary.slice(targetIndex + 1))
+        }
+    });
+}

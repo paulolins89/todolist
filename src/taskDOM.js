@@ -62,7 +62,8 @@ function updateTaskList(tasks){
         let fullTask = document.createElement('div');
         fullTask.setAttribute('class', 'fullTask');
 
-        let checkTask = document.createElement('checkbox');
+        let checkTask = document.createElement('input');
+        checkTask.setAttribute('type', 'checkbox');
         checkTask.setAttribute('class', 'checkTask');
         
         let taskName = document.createElement('p');
