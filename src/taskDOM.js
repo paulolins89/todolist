@@ -1,4 +1,4 @@
-import addTaskToList from './taskmaker';
+import {updateTask, addTaskToList, tasks} from './taskmaker';
 export {inputNewTask, updateTaskList};
 
 const addTaskBtn = document.getElementById('addTaskBtn');
@@ -65,6 +65,7 @@ function updateTaskList(tasks){
         let checkTask = document.createElement('input');
         checkTask.setAttribute('type', 'checkbox');
         checkTask.setAttribute('class', 'checkTask');
+        checkTask.setAttribute('id', 'check' + i);
         
         let taskName = document.createElement('p');
         taskName.setAttribute('class', 'taskName');
@@ -78,6 +79,7 @@ function updateTaskList(tasks){
         deleteTask.setAttribute('type', 'button');
         deleteTask.setAttribute('value', 'Delete');
         deleteTask.setAttribute('class', 'deleteTask');
+        deleteTask.setAttribute('id', 'delete' + i);
 
         fullTask.appendChild(checkTask);
         fullTask.appendChild(taskName);

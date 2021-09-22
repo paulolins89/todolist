@@ -1,4 +1,5 @@
 import {inputNewTask, updateTaskList} from './taskDOM';
+export {updateTask, addTaskToList, tasks};
 
 function Task(title, duedate){
     this.title = title;
@@ -14,7 +15,7 @@ function Project(name, tasks){
 
 let tasks = [];
 
-export default function addTaskToList(){
+function addTaskToList(){
     const taskButtons = document.querySelectorAll('.taskButton');
     //let submitTask = document.getElementById('submitTask');
     //let cancelTask = document.getElementById('cancelTask');
@@ -32,13 +33,11 @@ export default function addTaskToList(){
     });
 }
 
-function deleteTask(){
-    let taskFormOrList = document.getElementById('taskFormOrList');
-    taskFormOrList.addEventListener('click', e => {
-        if (e.target.className == 'deleteTask'){
-            //check this logic
-            let targetIndex = parseFloat(e.target.id.slice(6));
-            myLibrary = myLibrary.slice(0,targetIndex).concat(myLibrary.slice(targetIndex + 1))
-        }
-    });
+function updateTask(tasks, event){
+    console.log(event.target.id);
+    if (event.target.className == 'deleteTask'){
+        let targetIndex = parseFloat(event.target.id.slice(6));
+        tasks = tasks.slice(0,targetIndex).concat(tasks.slice(targetIndex + 1))
+        updateTaskList(tasks);
+    }
 }
