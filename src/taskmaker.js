@@ -34,10 +34,10 @@ function addTaskToList(){
 }
 
 function updateTask(tasks, event){
-    console.log(event.target.id);
     if (event.target.className == 'deleteTask'){
         let targetIndex = parseFloat(event.target.id.slice(6));
         tasks = tasks.slice(0,targetIndex).concat(tasks.slice(targetIndex + 1))
         updateTaskList(tasks);
+        console.log(tasks);
     }
 }
