@@ -3,7 +3,7 @@ import addTaskToList from './taskmaker';
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskFormOrList = document.getElementById('taskFormOrList');
 
-export function inputNewTask (){
+export default function inputNewTask (){
     addTaskBtn.style.display = 'none';
 
     let taskForm = document.createElement('form');
@@ -14,7 +14,7 @@ export function inputNewTask (){
     taskName.setAttribute('id', 'taskName');
     taskName.required = true;
 
-    let dueDate = document.createElement('input')
+    let dueDate = document.createElement('input');
     dueDate.setAttribute('type', 'date');
     dueDate.setAttribute('id', 'dueDate');
 
@@ -50,8 +50,7 @@ export function inputNewTask (){
 }
 
 export function updateTaskList(tasks){
-    let taskForm = document.getElementById('taskForm');
-    
+   
     while (taskFormOrList.firstChild){
         taskFormOrList.removeChild(taskFormOrList.lastChild);
     }
@@ -83,7 +82,7 @@ export function updateTaskList(tasks){
         taskFormOrList.appendChild(fullTask);
     }
     
-    addTaskBtn.style.display = 'initial';
+    addTaskBtn.style.display = '';
 }
 
 
