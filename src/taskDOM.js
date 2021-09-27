@@ -85,7 +85,7 @@ function makeForm(taskID){
     cancelTask.setAttribute('type', 'reset');
     cancelTask.setAttribute('value', 'Cancel');
     cancelTask.classList.add('taskButton');
-    cancelTask.setAttribute('id', 'cancelTask' + taskID);
+    cancelTask.setAttribute('id', 'cancelTask');
 
     taskForm.appendChild(taskName);
     taskForm.appendChild(dueDate);

@@ -5,6 +5,9 @@ import './style.css';
 const addTaskBtn = document.getElementById('addTaskBtn');
 let taskFormOrList = document.getElementById('taskFormOrList');
 
+//the first eventlistener starts here. the task list's length is first sent
+//to give an ID to the add and cancel button
+
 addTaskBtn.addEventListener('click', () => {
     inputNewTask(tasks.length);
 });
@@ -23,7 +26,6 @@ taskFormOrList.addEventListener('click', e => {
         };
         updateTaskList(tasks);
     }else if (e.target.className == 'editTask'){
-        console.log(e.target.id);
         editTask(tasks, parseFloat(e.target.id.slice(4)));
     };
 
