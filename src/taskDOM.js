@@ -68,12 +68,13 @@ function makeForm(taskID){
     dueDate.setAttribute('type', 'date');
     dueDate.setAttribute('id', 'dueDate');
 
-    /* Set up the basic stuff and then you can add a description and priority
     let taskDescription = document.createElement('input');
     taskDescription.setAttribute('type', 'text');
-    let taskPriority = document.createElement('input');
-    taskPriority.setAttribute('type', 'button');
-    */
+    taskDescription.setAttribute('id', 'taskDescription');
+    
+    //let taskPriority = document.createElement('input');
+    //taskPriority.setAttribute('type', 'dropdown');
+    
     
     let submitTask = document.createElement('input');
     submitTask.setAttribute('type', 'submit');
@@ -89,8 +90,8 @@ function makeForm(taskID){
 
     taskForm.appendChild(taskName);
     taskForm.appendChild(dueDate);
+    taskForm.appendChild(taskDescription);
 
-    //taskForm.appendChild(taskDescription);
     //taskForm.appendChild(taskPriority);
 
     taskForm.appendChild(submitTask);
@@ -121,6 +122,8 @@ function editTask (tasks, taskID){
             taskName.setAttribute('value', tasks[taskID].title);
             dueDate = document.getElementById('dueDate');
             dueDate.setAttribute('value', tasks[taskID].duedate);
+            taskDescription = document.getElementById('taskDescription');
+            taskDescription.setAttribute('value', tasks[taskID].description);
         }else{
             makeTask(i);
         }

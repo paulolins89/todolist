@@ -1,10 +1,12 @@
 import {inputNewTask, updateTaskList, editTask} from './taskDOM';
 export {addTaskToList, tasks};
 
-function Task(title, duedate){
+function Task(title, duedate, description){
     this.title = title;
     this.duedate = duedate;
     this.done = false;
+    this.description = description;
+    //this.priority = priority;
 }
 
 /*
@@ -29,12 +31,14 @@ function addTaskToList(taskID){
         event.preventDefault;
         let taskInput = document.getElementById('taskName').value;
         let duedateInput = document.getElementById('dueDate').value;
+        let descriptionInput = document.getElementById('taskDescription').value
         
         if (taskID == tasks.length){
-            tasks.push(new Task(taskInput, duedateInput));
+            tasks.push(new Task(taskInput, duedateInput, descriptionInput));
         }else{
             tasks[taskID].title = taskInput;
             tasks[taskID].duedate = duedateInput;
+            tasks[taskID].description = descriptionInput;
         }
         
         updateTaskList(tasks);
