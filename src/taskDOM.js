@@ -61,6 +61,7 @@ function makeForm(taskID){
 
     let taskName = document.createElement('input');
     taskName.setAttribute('type', 'text');
+    taskName.setAttribute('placeholder', 'Task?');
     taskName.setAttribute('id', 'taskName');
     taskName.setAttribute('required', 'required');
 
@@ -70,6 +71,7 @@ function makeForm(taskID){
 
     let taskDescription = document.createElement('input');
     taskDescription.setAttribute('type', 'text');
+    taskDescription.setAttribute('placeholder', 'Description?');
     taskDescription.setAttribute('id', 'taskDescription');
     
     //let taskPriority = document.createElement('input');
