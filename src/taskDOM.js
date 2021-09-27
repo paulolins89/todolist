@@ -53,7 +53,7 @@ function makeTask(taskID){
     taskFormOrList.appendChild(fullTask);
 }
 
-function makeForm(){
+function makeForm(taskID){
     addTaskBtn.style.display = 'none';
 
     let taskForm = document.createElement('form');
@@ -79,13 +79,13 @@ function makeForm(){
     submitTask.setAttribute('type', 'submit');
     submitTask.setAttribute('value', 'Add');
     submitTask.classList.add('taskButton');
-    submitTask.setAttribute('id', 'submitTask');
+    submitTask.setAttribute('id', 'submitTask' + taskID);
 
     let cancelTask = document.createElement('input');
     cancelTask.setAttribute('type', 'reset');
     cancelTask.setAttribute('value', 'Cancel');
     cancelTask.classList.add('taskButton');
-    cancelTask.setAttribute('id', 'cancelTask');
+    cancelTask.setAttribute('id', 'cancelTask' + taskID);
 
     taskForm.appendChild(taskName);
     taskForm.appendChild(dueDate);
@@ -99,9 +99,9 @@ function makeForm(){
     taskFormOrList.appendChild(taskForm);
 }
 
-function inputNewTask() {
-    makeForm();
-    addTaskToList();
+function inputNewTask(taskID) {
+    makeForm(taskID);
+    addTaskToList(taskID);
 }
 
 function updateTaskList(tasks){
@@ -125,6 +125,7 @@ function editTask (tasks, taskID){
             makeTask(i);
         }
     }
+    addTaskToList(taskID);
 }
 
 function clearFormOrList(){

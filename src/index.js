@@ -6,7 +6,7 @@ const addTaskBtn = document.getElementById('addTaskBtn');
 let taskFormOrList = document.getElementById('taskFormOrList');
 
 addTaskBtn.addEventListener('click', () => {
-    inputNewTask();
+    inputNewTask(tasks.length);
 });
 
 taskFormOrList.addEventListener('click', e => {

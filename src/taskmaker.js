@@ -16,7 +16,7 @@ function Project(name, tasks){
 
 let tasks = [];
 
-function addTaskToList(){
+function addTaskToList(taskID){
     const taskForm = document.getElementById('taskForm');
     taskForm.addEventListener('click', e => {
         if (e.target.id == 'cancelTask') {
@@ -29,7 +29,14 @@ function addTaskToList(){
         event.preventDefault;
         let taskInput = document.getElementById('taskName').value;
         let duedateInput = document.getElementById('dueDate').value;
-        tasks.push(new Task(taskInput, duedateInput));
+        
+        if (taskID == tasks.length){
+            tasks.push(new Task(taskInput, duedateInput));
+        }else{
+            tasks[taskID].title = taskInput;
+            tasks[taskID].duedate = duedateInput;
+        }
+        
         updateTaskList(tasks);
     });
 }
