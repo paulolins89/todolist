@@ -13,7 +13,7 @@ function inputNewTask() {
     let taskName = document.createElement('input');
     taskName.setAttribute('type', 'text');
     taskName.setAttribute('id', 'taskName');
-    taskName.required = true;
+    taskName.setAttribute('required', 'required');
 
     let dueDate = document.createElement('input');
     dueDate.setAttribute('type', 'date');
@@ -27,13 +27,13 @@ function inputNewTask() {
     */
     
     let submitTask = document.createElement('input');
-    submitTask.setAttribute('type', 'button');
+    submitTask.setAttribute('type', 'submit');
     submitTask.setAttribute('value', 'Add');
     submitTask.classList.add('taskButton');
     submitTask.setAttribute('id', 'submitTask');
 
     let cancelTask = document.createElement('input');
-    cancelTask.setAttribute('type', 'button');
+    cancelTask.setAttribute('type', 'reset');
     cancelTask.setAttribute('value', 'Cancel');
     cancelTask.classList.add('taskButton');
     cancelTask.setAttribute('id', 'cancelTask');

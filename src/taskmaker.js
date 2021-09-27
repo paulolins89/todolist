@@ -17,18 +17,20 @@ function Project(name, tasks){
 let tasks = [];
 
 function addTaskToList(){
-    const taskButtons = document.querySelectorAll('.taskButton');
-    //let submitTask = document.getElementById('submitTask');
-    //let cancelTask = document.getElementById('cancelTask');
-    //later put logic in case person cancels
-    taskButtons.forEach((button) => {
-        button.addEventListener('click', e => {
-            if (e.target.id == 'submitTask'){
-                let taskInput = document.getElementById('taskName').value;
-                let duedateInput = document.getElementById('dueDate').value;
-                tasks.push(new Task(taskInput, duedateInput));
-            };
+    const taskForm = document.getElementById('taskForm');
+    taskForm.addEventListener('click', e => {
+        if (e.target.id == 'cancelTask') {
+            console.log(e.target.id);
             updateTaskList(tasks);
-        });
+        }
     });
+    
+    taskForm.addEventListener('submit', event => {
+        event.preventDefault;
+        let taskInput = document.getElementById('taskName').value;
+        let duedateInput = document.getElementById('dueDate').value;
+        tasks.push(new Task(taskInput, duedateInput));
+        updateTaskList(tasks);
+    });
+
 }
