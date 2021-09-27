@@ -1,10 +1,59 @@
 import {updateTask, addTaskToList, tasks} from './taskmaker';
-export {inputNewTask, updateTaskList};
+export {inputNewTask, updateTaskList, editTask};
 
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskFormOrList = document.getElementById('taskFormOrList');
 
-function inputNewTask() {
+function makeTask(taskID){
+    let fullTask = document.createElement('div');
+    fullTask.setAttribute('class', 'fullTask');
+
+    let checkTask = document.createElement('input');
+    checkTask.setAttribute('type', 'checkbox');
+    checkTask.classList.add('checkTask');
+    checkTask.setAttribute('id', 'check' + taskID);
+    
+    let taskName = document.createElement('p');
+    taskName.setAttribute('class', 'taskName');
+    taskName.setAttribute('id', 'taskName' + taskID);
+    taskName.innerHTML = tasks[taskID].title;
+
+    let dueDate = document.createElement('p')
+    dueDate.setAttribute('class', 'dueDate');
+    dueDate.setAttribute('id', 'dueDate' + taskID);
+    dueDate.innerHTML = tasks[taskID].duedate;
+
+    if (tasks[taskID].done == false){
+        taskName.classList.remove('checked');
+        dueDate.classList.remove('checked');
+        checkTask.checked = false;
+    }else{
+        taskName.classList.add('checked');
+        dueDate.classList.add('checked');
+        checkTask.checked = true;
+    }
+
+    let deleteTask = document.createElement('input');
+    deleteTask.setAttribute('type', 'button');
+    deleteTask.setAttribute('value', 'Delete');
+    deleteTask.setAttribute('class', 'deleteTask');
+    deleteTask.setAttribute('id', 'delete' + taskID);
+
+    let editTask = document.createElement('input');
+    editTask.setAttribute('type', 'button');
+    editTask.setAttribute('value', 'Edit');
+    editTask.setAttribute('class', 'editTask');
+    editTask.setAttribute('id', 'edit' + taskID);
+
+    fullTask.appendChild(checkTask);
+    fullTask.appendChild(taskName);
+    fullTask.appendChild(dueDate);
+    fullTask.appendChild(deleteTask);
+    fullTask.appendChild(editTask);
+    taskFormOrList.appendChild(fullTask);
+}
+
+function makeForm(){
     addTaskBtn.style.display = 'none';
 
     let taskForm = document.createElement('form');
@@ -48,66 +97,38 @@ function inputNewTask() {
     taskForm.appendChild(cancelTask);
 
     taskFormOrList.appendChild(taskForm);
+}
 
+function inputNewTask() {
+    makeForm();
     addTaskToList();
 }
 
 function updateTaskList(tasks){
-
-    while (taskFormOrList.firstChild){
-        taskFormOrList.removeChild(taskFormOrList.lastChild);
-    }
-
+    clearFormOrList();
     for (let i = 0; i < tasks.length; i++){
-        let fullTask = document.createElement('div');
-        fullTask.setAttribute('class', 'fullTask');
-
-        let checkTask = document.createElement('input');
-        checkTask.setAttribute('type', 'checkbox');
-        checkTask.classList.add('checkTask');
-        checkTask.setAttribute('id', 'check' + i);
-        
-        let taskName = document.createElement('p');
-        taskName.setAttribute('class', 'taskName');
-        taskName.setAttribute('id', 'taskName' + i);
-        taskName.innerHTML = tasks[i].title;
-
-        let dueDate = document.createElement('p')
-        dueDate.setAttribute('class', 'dueDate');
-        dueDate.setAttribute('id', 'dueDate' + i);
-        dueDate.innerHTML = tasks[i].duedate;
-
-        if (tasks[i].done == false){
-            taskName.classList.remove('checked');
-            dueDate.classList.remove('checked');
-            checkTask.checked = false;
-        }else{
-            taskName.classList.add('checked');
-            dueDate.classList.add('checked');
-            checkTask.checked = true;
-        }
-
-        let deleteTask = document.createElement('input');
-        deleteTask.setAttribute('type', 'button');
-        deleteTask.setAttribute('value', 'Delete');
-        deleteTask.setAttribute('class', 'deleteTask');
-        deleteTask.setAttribute('id', 'delete' + i);
-
-        let editTask = document.createElement('input');
-        editTask.setAttribute('type', 'button');
-        editTask.setAttribute('value', 'Edit');
-        editTask.setAttribute('class', 'editTask');
-        editTask.setAttribute('id', 'edit' + i);
-
-        fullTask.appendChild(checkTask);
-        fullTask.appendChild(taskName);
-        fullTask.appendChild(dueDate);
-        fullTask.appendChild(deleteTask);
-        fullTask.appendChild(editTask);
-        taskFormOrList.appendChild(fullTask);
+        makeTask(i);
     }
-    
     addTaskBtn.style.display = '';
 }
 
+function editTask (tasks, taskID){
+    clearFormOrList();
+    for (let i = 0; i < tasks.length; i++){
+        if (i == taskID){
+            makeForm();
+            taskName = document.getElementById('taskName');
+            taskName.setAttribute('value', tasks[taskID].title);
+            dueDate = document.getElementById('dueDate');
+            dueDate.setAttribute('value', tasks[taskID].duedate);
+        }else{
+            makeTask(i);
+        }
+    }
+}
 
+function clearFormOrList(){
+    while (taskFormOrList.firstChild){
+        taskFormOrList.removeChild(taskFormOrList.lastChild);
+    }
+}

@@ -1,4 +1,4 @@
-import {inputNewTask, updateTaskList} from './taskDOM';
+import {inputNewTask, updateTaskList, editTask} from './taskDOM';
 export {addTaskToList, tasks};
 
 function Task(title, duedate){
@@ -32,5 +32,4 @@ function addTaskToList(){
         tasks.push(new Task(taskInput, duedateInput));
         updateTaskList(tasks);
     });
-
 }

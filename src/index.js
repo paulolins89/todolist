@@ -1,4 +1,4 @@
-import {inputNewTask, updateTaskList} from './taskDOM';
+import {inputNewTask, updateTaskList, editTask} from './taskDOM';
 import {addTaskToList, tasks} from './taskmaker';
 import './style.css';
 
@@ -22,6 +22,9 @@ taskFormOrList.addEventListener('click', e => {
             tasks[targetIndex].done = false;
         };
         updateTaskList(tasks);
+    }else if (e.target.className == 'editTask'){
+        console.log(e.target.id);
+        editTask(tasks, parseFloat(e.target.id.slice(4)));
     };
 
 });
